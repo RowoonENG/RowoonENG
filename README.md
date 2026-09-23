@@ -65,7 +65,7 @@ GitHub Desktop으로 이 폴더를 저장소로 생성한 뒤 Publish repository
 
 공식 안내: https://vercel.com/docs/project-configuration/vercel-json
 
-GitHub 계정 연결 및 Vercel 실제 배포는 이 ZIP에 포함되지 않습니다. 기존 Sites 홈페이지도 변경하지 않았습니다.
+현재 RowoonENG/RowoonENG 저장소는 Vercel 프로젝트에 연결되어 있으며, `main`에 반영된 수정은 자동 배포됩니다.
 
 ## rweng.net 연결
 
