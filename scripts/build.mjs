@@ -1,0 +1,11 @@
+import {rm,mkdir,cp,copyFile,access} from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+const root=fileURLToPath(new URL('../',import.meta.url)),out=path.join(root,'dist');
+await rm(out,{recursive:true,force:true});
+await mkdir(path.join(out,'assets'),{recursive:true});
+await cp(path.join(root,'public'),out,{recursive:true});
+await copyFile(path.join(root,'src/index.html'),path.join(out,'index.html'));
+for(const name of ['styles.css','main.js','config.js'])await copyFile(path.join(root,'src',name),path.join(out,'assets',name));
+for(const name of ['index.html','assets/styles.css','assets/main.js','assets/config.js','assets/rowoon-eng-logo.webp','assets/hydrogen-engineers-hero.webp'])await access(path.join(out,name));
+console.log('Build complete: dist/');

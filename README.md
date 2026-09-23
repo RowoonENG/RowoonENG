@@ -24,8 +24,8 @@ http://localhost:3000 접속. 수정 후 서버를 종료하고 `npm run dev`를
 | src/styles.css | 디자인·반응형 스타일 |
 | src/main.js | 탭·애니메이션·이메일 문의·지도 |
 | src/config.js | 카카오 JavaScript 공개 키 |
-| public/assets/rowoon-eng-logo.png | 회사 로고 |
-| public/assets/hydrogen-engineers-hero.png | AI 생성 홈 배너 |
+| public/assets/rowoon-eng-logo.webp | 회사 로고 |
+| public/assets/hydrogen-engineers-hero.webp | AI 생성 홈 배너 |
 | scripts/build.mjs | dist 생성 |
 | scripts/serve.mjs | 로컬 서버 |
 | package.json / package-lock.json | 실행 설정 |
@@ -36,14 +36,14 @@ http://localhost:3000 접속. 수정 후 서버를 종료하고 `npm run dev`를
 
 ## GitHub 업로드
 
-GitHub에서 빈 저장소를 만든 뒤 아래 YOUR_ACCOUNT를 실제 계정명으로 바꿔 실행합니다.
+이 프로젝트는 RowoonENG/RowoonENG 저장소에 업로드되어 있습니다. 로컬 복사본 변경분을 반영할 때 다음 명령을 사용합니다:
 
 ```bash
 git init
 git add .
 git commit -m "Initial Rowoon ENG website"
 git branch -M main
-git remote add origin https://github.com/YOUR_ACCOUNT/rowoon-eng-website.git
+git remote add origin https://github.com/RowoonENG/RowoonENG.git
 git push -u origin main
 ```
 
@@ -60,7 +60,7 @@ GitHub Desktop으로 이 폴더를 저장소로 생성한 뒤 Publish repository
 
 공식 안내: https://vercel.com/docs/project-configuration/vercel-json
 
-Vercel에서 이 저장소를 Import하여 배포할 수 있습니다. 기존 Sites 홈페이지는 별도로 유지됩니다.
+GitHub 계정 연결 및 Vercel 실제 배포는 이 ZIP에 포함되지 않습니다. 기존 Sites 홈페이지도 변경하지 않았습니다.
 
 ## rweng.net 연결
 
