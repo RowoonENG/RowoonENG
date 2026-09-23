@@ -24,8 +24,9 @@ http://localhost:3000 접속. 수정 후 서버를 종료하고 `npm run dev`를
 | src/styles.css | 디자인·반응형 스타일 |
 | src/main.js | 탭·애니메이션·이메일 문의·지도 |
 | src/config.js | 카카오 JavaScript 공개 키 |
-| public/assets/rowoon-eng-logo.webp | 회사 로고 |
+| public/assets/rowoon-eng-logo.png | 회사 로고 |
 | public/assets/hydrogen-engineers-hero.webp | AI 생성 홈 배너 |
+| public/assets/favicon.png | 브라우저 탭용 회사 로고 심벌 |
 | scripts/build.mjs | dist 생성 |
 | scripts/serve.mjs | 로컬 서버 |
 | package.json / package-lock.json | 실행 설정 |
@@ -33,6 +34,10 @@ http://localhost:3000 접속. 수정 후 서버를 종료하고 `npm run dev`를
 | .gitignore | 빌드 생성물·비밀정보 제외 |
 
 수정은 src 및 public에서 하고 dist는 직접 수정하지 않습니다. 주소는 /#home, /#about, /#business, /#projects, /#contact 방식입니다.
+
+## 투명 로고와 브라우저 탭 아이콘
+
+회사 로고는 원본 PNG의 알파 투명도를 보존합니다. 브라우저 탭에는 원본 로고의 RW 심벌을 투명 배경 PNG로 사용합니다. 배포 뒤 예전 검은 로고가 캐시에 남아 보이면 강력 새로고침(Windows: Ctrl+F5)을 하세요.
 
 ## GitHub 업로드
 

@@ -7,5 +7,5 @@ await mkdir(path.join(out,'assets'),{recursive:true});
 await cp(path.join(root,'public'),out,{recursive:true});
 await copyFile(path.join(root,'src/index.html'),path.join(out,'index.html'));
 for(const name of ['styles.css','main.js','config.js'])await copyFile(path.join(root,'src',name),path.join(out,'assets',name));
-for(const name of ['index.html','assets/styles.css','assets/main.js','assets/config.js','assets/rowoon-eng-logo.webp','assets/hydrogen-engineers-hero.webp'])await access(path.join(out,name));
+for(const name of ['index.html','assets/styles.css','assets/main.js','assets/config.js','assets/rowoon-eng-logo.png','assets/favicon.png','assets/hydrogen-engineers-hero.webp'])await access(path.join(out,name));
 console.log('Build complete: dist/');
