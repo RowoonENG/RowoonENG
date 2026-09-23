@@ -30,8 +30,24 @@ tabs.forEach((tab,index)=>tab.addEventListener('keydown',event=>{let next=index;
 window.addEventListener('hashchange',()=>showPage(location.hash.slice(1)));
 showPage(location.hash.slice(1),false);
 document.getElementById('year').textContent=new Date().getFullYear();
-document.getElementById('contact-form').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target);const body=['회사명: '+f.get('company'),'담당자: '+f.get('person'),'이메일 주소: '+f.get('email'),'연락처: '+f.get('phone'),'','문의내용:',f.get('message')].join('\n');window.location.href='mailto:sales@rweng.net?subject='+encodeURIComponent('[홈페이지 문의] '+f.get('company'))+'&body='+encodeURIComponent(body);document.getElementById('form-status').textContent='이메일 작성창 열기를 요청했습니다. 작성창에서 발송을 완료해 주세요.'});
+const contactForm=document.getElementById('contact-form');
+contactForm.addEventListener('submit',async e=>{
+ e.preventDefault();
+ const status=document.getElementById('form-status');
+ const button=contactForm.querySelector('button[type=submit]');
+ if(contactForm.elements._honey.value)return;
+ const originalLabel=button.textContent;
+ button.disabled=true;button.textContent='전송 중…';status.textContent='문의 내용을 전송하고 있습니다.';
+ try{
+  const response=await fetch(contactForm.action,{method:'POST',headers:{Accept:'application/json'},body:new FormData(contactForm)});
+  const result=await response.json();
+  if(!response.ok||result.success===false)throw new Error(result.message||'전송에 실패했습니다.');
+  contactForm.reset();status.textContent='문의가 sales@rweng.net으로 전송되었습니다. 빠른 시일 내에 연락드리겠습니다.';
+ }catch(error){
+  status.textContent='전송하지 못했습니다. 잠시 후 다시 시도하거나 sales@rweng.net으로 직접 문의해 주세요.';
+ }finally{button.disabled=false;button.textContent=originalLabel}
+});
 // 카카오 지도 연동: JavaScript 키를 입력하고 서비스 도메인을 Kakao Developers에 등록하세요.
 // 키가 비어 있거나 지도 로딩에 실패하면 주소와 카카오맵 검색 링크를 유지합니다.
 const KAKAO_JAVASCRIPT_KEY=window.ROWOON_CONFIG?.kakaoJavascriptKey || '';
-if(KAKAO_JAVASCRIPT_KEY){const script=document.createElement('script');script.src='https://dapi.kakao.com/v2/maps/sdk.js?appkey='+encodeURIComponent(KAKAO_JAVASCRIPT_KEY)+'&libraries=services&autoload=false';script.onload=()=>{kakao.maps.load(()=>{const geocoder=new kakao.maps.services.Geocoder();geocoder.addressSearch('경기도 오산시 수목원로88번길 35',(results,status)=>{if(status!==kakao.maps.services.Status.OK)return;const el=document.getElementById('kakao-map');el.replaceChildren();el.style.display='block';el.style.padding='0';el.style.height='260px';const center=new kakao.maps.LatLng(results[0].y,results[0].x);const map=new kakao.maps.Map(el,{center,level:3});new kakao.maps.Marker({map,position:center});window.addEventListener('resize',()=>{map.relayout();map.setCenter(center)})})})};document.head.appendChild(script)}
+if(KAKAO_JAVASCRIPT_KEY){const script=document.createElement('script');script.src='https://dapi.kakao.com/v2/maps/sdk.js?appkey='+encodeURIComponent(KAKAO_JAVASCRIPT_KEY)+'&libraries=services&autoload=false';script.onload=()=>{kakao.maps.load(()=>{const geocoder=new kakao.maps.services.Geocoder();geocoder.addressSearch('경기도 오산시 수목원로88번길 35',(results,status)=>{if(status!==kakao.maps.services.Status.OK)return;const el=document.getElementById('kakao-map');document.getElementById('naver-map').hidden=true;el.hidden=false;el.replaceChildren();const center=new kakao.maps.LatLng(results[0].y,results[0].x);const map=new kakao.maps.Map(el,{center,level:3});new kakao.maps.Marker({map,position:center});window.addEventListener('resize',()=>{map.relayout();map.setCenter(center)})})})};document.head.appendChild(script)}

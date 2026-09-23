@@ -22,7 +22,7 @@ http://localhost:3000 접속. 수정 후 서버를 종료하고 `npm run dev`를
 |---|---|
 | src/index.html | 전체 콘텐츠 |
 | src/styles.css | 디자인·반응형 스타일 |
-| src/main.js | 탭·애니메이션·이메일 문의·지도 |
+| src/main.js | 탭·애니메이션·문의 전송·지도 |
 | src/config.js | 카카오 JavaScript 공개 키 |
 | public/assets/rowoon-eng-logo.png | 회사 로고 |
 | public/assets/hydrogen-engineers-hero.webp | AI 생성 홈 배너 |
@@ -71,14 +71,16 @@ GitHub 계정 연결 및 Vercel 실제 배포는 이 ZIP에 포함되지 않습�
 
 Vercel의 도메인 설정에서 rweng.net 및 필요시 www.rweng.net을 추가하고, 화면에 표시되는 DNS 값을 도메인 관리업체에서 적용합니다. Google Workspace 메일에 쓰이는 MX·SPF·DKIM·DMARC 레코드는 유지하세요. 도메인이 자동 연결되는 것은 아닙니다.
 
-## 카카오 지도
+## 문의 폼과 지도
 
-src/config.js의 kakaoJavascriptKey에 브라우저용 JavaScript 키를 넣고 Kakao Developers에서 서비스 도메인을 등록하세요. 키가 비어 있으면 기존 카카오맵 검색 링크가 표시됩니다. 서버 비밀키를 넣지 마세요.
+문의 폼은 FormSubmit AJAX를 이용해 `sales@rweng.net`으로 직접 전달합니다. FormSubmit에서 수신 주소를 처음 사용할 때 소유자 확인 메일을 보낼 수 있으니 해당 메일에서 확인을 완료해야 접수가 활성화됩니다. 입력한 연락 정보와 문의 내용은 전송 처리를 위해 FormSubmit 서비스로 전달됩니다.
+
+문의 위치는 네이버 지도 검색 화면을 삽입합니다. Kakao Developers의 브라우저용 JavaScript 키를 `src/config.js`에 설정하고 서비스 도메인을 등록하면 주소 검색에 성공한 경우 카카오 지도가 우선 표시됩니다. 키가 없거나 주소 검색이 실패하면 네이버 지도가 유지됩니다. 서버 비밀키는 넣지 마세요.
 
 ## 현재 기능과 남은 자료
 
-- 문의 폼은 mailto:sales@rweng.net으로 이메일 작성창을 열며 방문자가 직접 전송해야 합니다. 서버 접수·DB·자동 발송은 없습니다.
+- 문의 폼은 FormSubmit을 통해 sales@rweng.net으로 전달됩니다. 해당 서비스의 최초 수신 확인이 필요할 수 있습니다.
 - 사업분야 사진, 실적 및 파트너 로고는 준비 중 영역입니다.
 - 배너는 AI 생성 이미지이며 실제 시공 현장 또는 인증 증빙이 아닙니다.
 - 회사소개 원문과 동작 줄이기 설정 대응을 유지합니다.
-- 외부 웹 연결은 카카오맵 링크 및 키 설정 시 지도 서비스에 필요합니다.
+- 외부 웹 연결은 FormSubmit 문의 전달 및 지도 서비스에 필요합니다.
